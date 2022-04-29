@@ -13,14 +13,14 @@ class TreeModelPainter extends CustomPainter {
   }
   @override
   void paint(Canvas canvas, Size size) {
-    pintar(canvas, size.width / 2, 20, objTreeModel.root);
+    pintar(canvas, size.width / 6, 20, objTreeModel.root);
   }
 
   @override
   bool shouldRepaint(TreeModelPainter oldDelegate) => true;
   final colorList = [
-    Colors.blue,
     Colors.green,
+    Colors.blue,
     Colors.amber,
     Colors.deepOrange
   ];
