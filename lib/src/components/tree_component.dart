@@ -13,7 +13,7 @@ class TreeModelPainter extends CustomPainter {
   }
   @override
   void paint(Canvas canvas, Size size) {
-    pintar(canvas, size.width / 6, 20, objTreeModel.root);
+    pintar(canvas, size.width / 12, 20, objTreeModel.root);
   }
 
   @override
@@ -48,9 +48,7 @@ class TreeModelPainter extends CustomPainter {
       fontWeight: FontWeight.bold,
     );
     final textSpan = TextSpan(
-      text: n?.izquierda != null
-          ? "The ${n?.dato.commit?.branch} branch was created"
-          : n?.dato.commit?.message,
+      text: "[${n?.dato.commit?.branch}] ${n?.dato.commit?.message}",
       style: textStyle,
     );
     final textPainter = TextPainter(
