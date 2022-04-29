@@ -11,7 +11,7 @@ class NodeModel {
   NodeModel? insertar(NodeModel? root, NodeModel nuevo) {
     if (root == null) {
       root = nuevo;
-    } else if (root.dato.commit?.message == nuevo.dato.commit?.message) {
+    } else if (root.dato.sha == nuevo.dato.sha) {
       root.izquierda = insertar(root.izquierda, nuevo);
     } else {
       root.down = insertar(root.down, nuevo);
