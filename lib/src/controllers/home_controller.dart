@@ -24,12 +24,18 @@ class HomeController extends ControllerMVC {
       for (var item in bodyTemp) {
         branchesList.add(BranchesModel.fromJson(item));
       }
+      List<BranchesModel> branchesListTemp = [];
+      if (branchesList.length > 2) {
+        branchesListTemp = [branchesList[1], branchesList[0], branchesList[2]];
+      }
+      branchesList = branchesListTemp;
     } else {
       final errorTemp = jsonDecode(response.body);
 
       error =
           'Failed to load branches \nError:${response.statusCode} \n${errorTemp['message']}}';
     }
+
     isLoading = false;
   }
 
@@ -49,6 +55,23 @@ class HomeController extends ControllerMVC {
         error = 'Failed to load commits \nError:${response.statusCode}';
       }
     }
+    commitList.sort((a, b) => a.commit!.committer!.date!
+        .compareTo(b.commit!.committer!.date as DateTime));
+
     isLoading = false;
+
+    List<GithubCommit> tempCommitList = [];
+    List<String> tempBranchesList = [];
+    for (var item in commitList) {
+      if (!tempCommitList.contains(item) ||
+          !tempBranchesList.contains(item.commit?.branch)) {
+        if (!tempBranchesList.contains(item.commit?.branch) &&
+            tempCommitList.contains(item)) {
+          tempBranchesList.add(item.commit?.branch ?? '');
+        }
+        tempCommitList.add(item);
+      }
+    }
+    commitList = tempCommitList;
   }
 }

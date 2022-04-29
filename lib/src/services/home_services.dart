@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 const baseURL = "https://api.github.com/repos/geparedesm/github/";
 const headers = {
-  HttpHeaders.userAgentHeader: 'request',
+  HttpHeaders.userAgentHeader: 'application/vnd.github.v3+json',
   HttpHeaders.acceptHeader: "*/*",
   HttpHeaders.acceptEncodingHeader: "gzip, deflate, br",
   HttpHeaders.connectionHeader: "keep-alive",
